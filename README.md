@@ -6,7 +6,6 @@
 
 <p align="center">
   <strong>Personal Finance Management Application</strong><br>
-  <em>Bachelor's Degree Project</em>
 </p>
 
 <p align="center">
