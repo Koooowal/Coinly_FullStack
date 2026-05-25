@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/Koooowal/coinly-finance-manager/actions/workflows/ci.yml">
-    <img src="https://github.com/Koooowal/coinly-finance-manager/actions/workflows/ci.yml/badge.svg" alt="CI">
+    <img src="https://github.com/Koooowal/coinly-finance-manager/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI">
   </a>
 </p>
 
