@@ -106,7 +106,7 @@ function IncomesPage() {
         await axios.delete(`/transactions/${id}`);
         showSuccess('Income deleted successfully!');
         fetchData();
-      } catch (err) {
+      } catch {
         showError('Error deleting transaction');
       }
     });

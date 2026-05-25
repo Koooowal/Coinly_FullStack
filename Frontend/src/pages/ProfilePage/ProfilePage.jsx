@@ -46,7 +46,7 @@ function ProfilePage() {
       if (prefsRes.data.success) setPreferences(prefsRes.data.data);
       if (accountsRes.data.success) setAccounts(accountsRes.data.data);
       if (categoriesRes.data.success) setCategories(categoriesRes.data.data);
-    } catch (err) {
+    } catch {
       showError('Error loading data');
     } finally {
       setLoading(false);
@@ -59,7 +59,7 @@ function ProfilePage() {
       await axios.put('/users/profile', profile);
       updateUser({ email: profile.email, username: profile.username });
       showSuccess('Profile updated successfully!');
-    } catch (err) {
+    } catch {
       showError('Error updating profile');
     }
   };
@@ -70,7 +70,7 @@ function ProfilePage() {
       await axios.put('/users/preferences', preferences);
       updateTheme(preferences.theme);
       showSuccess('Preferences updated successfully!');
-    } catch (err) {
+    } catch {
       showError('Error updating preferences');
     }
   };
@@ -101,7 +101,7 @@ function ProfilePage() {
       showSuccess(editingAccount ? 'Account updated successfully!' : 'Account created successfully!');
       setShowAccountModal(false);
       fetchData();
-    } catch (err) {
+    } catch {
       showError('Error saving account');
     }
   };
@@ -112,7 +112,7 @@ function ProfilePage() {
       showSuccess('Account deleted successfully!');
       setShowDeleteModal(false);
       fetchData();
-    } catch (err) {
+    } catch {
       showError('Error deleting account');
     }
   };
@@ -144,7 +144,7 @@ function ProfilePage() {
       showSuccess(editingCategory ? 'Category updated successfully!' : 'Category created successfully!');
       setShowCategoryModal(false);
       fetchData();
-    } catch (err) {
+    } catch {
       showError('Error saving category');
     }
   };
@@ -154,7 +154,7 @@ function ProfilePage() {
       await axios.delete(`/categories/${deleteItem.category_id}`);
       setShowDeleteModal(false);
       fetchData();
-    } catch (err) {
+    } catch {
       alert('Error deleting category');
     }
   };

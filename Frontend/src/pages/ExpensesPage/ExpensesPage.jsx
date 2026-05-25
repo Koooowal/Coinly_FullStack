@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ExpensesPage.css';
 import axios from '../../api/axios';
 import { FaPlus, FaEdit, FaTrash, FaFilter, FaExchangeAlt, FaRedoAlt } from 'react-icons/fa';
-import { showSuccess, showError, showWarning, showConfirm, showBudgetAlert } from '../../utils/toast';
+import { showSuccess, showError, showConfirm, showBudgetAlert } from '../../utils/toast';
 
 function ExpensesPage() {
   const [transactions, setTransactions] = useState([]);
@@ -76,7 +76,7 @@ function ExpensesPage() {
       setTransferTransactions(transfers.data.data || []);
       setCategories(cats.data.data || []);
       setAccounts(accs.data.data || []);
-    } catch (err) {
+    } catch {
       showError('Error fetching data');
     } finally {
       setLoading(false);
@@ -144,7 +144,7 @@ function ExpensesPage() {
         await axios.delete(`/transactions/${id}`);
         showSuccess('Expense deleted successfully!');
         fetchData();
-      } catch (err) {
+      } catch {
         showError('Error deleting transaction');
       }
     });
@@ -207,7 +207,7 @@ function ExpensesPage() {
         await axios.delete(`/recurring/${id}`);
         showSuccess('Recurring transaction deleted successfully!');
         fetchData();
-      } catch (err) {
+      } catch {
         showError('Error deleting recurring transaction');
       }
     });
@@ -217,7 +217,7 @@ function ExpensesPage() {
     try {
       await axios.patch(`/recurring/${id}/toggle`, { is_active: !currentStatus });
       fetchData();
-    } catch (err) {
+    } catch {
       showError('Error toggling recurring transaction status');
     }
   };
@@ -275,7 +275,7 @@ function ExpensesPage() {
         await axios.delete(`/transactions/${id}`);
         showSuccess('Transfer deleted successfully!');
         fetchData();
-      } catch (err) {
+      } catch {
         showError('Error deleting transfer');
       }
     });
@@ -300,24 +300,27 @@ function ExpensesPage() {
     switch (recurring.frequency) {
       case 'daily':
         return 'Today';
-      case 'weekly':
+      case 'weekly': {
         const nextWeek = new Date(start);
         while (nextWeek < today) {
           nextWeek.setDate(nextWeek.getDate() + 7);
         }
         return formatDate(nextWeek);
-      case 'monthly':
+      }
+      case 'monthly': {
         const nextMonth = new Date(today.getFullYear(), today.getMonth(), start.getDate());
         if (nextMonth < today) {
           nextMonth.setMonth(nextMonth.getMonth() + 1);
         }
         return formatDate(nextMonth);
-      case 'yearly':
+      }
+      case 'yearly': {
         const nextYear = new Date(today.getFullYear(), start.getMonth(), start.getDate());
         if (nextYear < today) {
           nextYear.setFullYear(nextYear.getFullYear() + 1);
         }
         return formatDate(nextYear);
+      }
       default:
         return 'Unknown';
     }

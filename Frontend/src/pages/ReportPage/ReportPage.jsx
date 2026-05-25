@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ReportPage.css';
 import axios from '../../api/axios';
 import { FaCalendar, FaChartPie, FaExchangeAlt, FaDownload, FaUpload, FaFileExport } from 'react-icons/fa';
-import { showSuccess, showError, showInfo, showConfirm } from '../../utils/toast';
+import { showSuccess, showError } from '../../utils/toast';
 
 function ReportPage() {
   const [activeTab, setActiveTab] = useState('monthly');
@@ -281,10 +281,6 @@ function ReportPage() {
 
   const formatCurrency = (val) => {
     return new Intl.NumberFormat('pl-PL', { minimumFractionDigits: 2 }).format(val || 0);
-  };
-
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('pl-PL');
   };
 
   const getMonthName = (month) => {

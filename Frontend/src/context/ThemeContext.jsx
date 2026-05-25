@@ -32,7 +32,7 @@ export const ThemeProvider = ({ children }) => {
           if (response.data.success && response.data.data?.theme) {
             setTheme(response.data.data.theme);
           }
-        } catch (error) {
+        } catch {
           console.log('Could not fetch theme preference');
         }
       }

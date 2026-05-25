@@ -9,10 +9,8 @@ import {
   FaBullseye,
   FaExchangeAlt
 } from 'react-icons/fa';
-import { useNavigate } from 'react-router';
 
 function DashboardPage() {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
     totalBalance: 0,

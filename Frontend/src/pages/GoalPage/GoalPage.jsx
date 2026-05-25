@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './GoalPage.css';
 import axios from '../../api/axios';
 import { FaPlus, FaEdit, FaTrash, FaTimes, FaCoins } from 'react-icons/fa';
-import { showSuccess, showError, showConfirm } from '../../utils/toast';
+import { showSuccess, showError } from '../../utils/toast';
 
 function GoalPage() {
   const [goals, setGoals] = useState([]);
@@ -101,7 +101,7 @@ function GoalPage() {
       showSuccess('Goal deleted successfully!');
       setShowDeleteModal(false);
       fetchGoals();
-    } catch (err) {
+    } catch {
       showError('Error deleting goal');
     }
   };

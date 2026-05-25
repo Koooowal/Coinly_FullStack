@@ -74,7 +74,7 @@ function BudgetPage() {
                 ...budget,
                 status: statusRes.data.data
               };
-            } catch (err) {
+            } catch {
               return budget;
             }
           })
@@ -146,7 +146,7 @@ function BudgetPage() {
       showSuccess('Budget deleted successfully!');
       setShowDeleteModal(false);
       fetchData();
-    } catch (err) {
+    } catch {
       showError('Error deleting budget');
     }
   };
